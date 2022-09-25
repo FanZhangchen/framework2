@@ -46,8 +46,8 @@
 
 [Executioner]
   type = Transient
-  end_time = 1.0
-  dt = 0.00005
+  end_time = 1.3
+  dt = 0.00000005
   solve_type = NEWTON
   petsc_options_iname = '-pc_type -pc_hypre_type'
   petsc_options_value = 'hypre boomeramg'
