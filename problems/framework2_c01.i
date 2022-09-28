@@ -74,6 +74,10 @@
 
 [Outputs]
   exodus = true
+  [./exodus]
+    type = Exodus
+    interval = 0.01
+  [../]
   [csv]
     type = CSV
     file_base = rho_distr_c01_out
