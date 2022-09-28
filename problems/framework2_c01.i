@@ -73,10 +73,10 @@
 []
 
 [Outputs]
-  exodus = true
   [./exodus]
     type = Exodus
-    interval = 0.01
+    start_step = 200000
+    interval = 200000
   [../]
   [csv]
     type = CSV
