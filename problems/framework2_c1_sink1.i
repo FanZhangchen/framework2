@@ -18,26 +18,36 @@
   [gnd_time_derivative]
     type = ADGNDTimeDerivative
     variable = rhog
-    use_displaced_mesh = true
   []
   [gnd_transport]
     type = ADGNDTrans
     variable = rhog
     rhot = rhot
-    backstress = 0.1
-    use_displaced_mesh = true
+    backstress = 1.0
   []
   [total_time_derivative]
     type = ADTotalTimeDerivative
     variable = rhot
-    use_displaced_mesh = true
   []
   [total_transport]
     type = ADTotalTrans
     variable = rhot
     rhog = rhog
-    backstress = 0.1
-    use_displaced_mesh = true
+    backstress = 1.0
+  []
+  [total_source]
+    type = ADTotalSource
+    variable = rhot
+    rhog = rhog
+    backstress = 1.0
+    source = 0.0
+  []
+  [total_sink]
+    type = ADTotalSink
+    variable = rhot
+    rhog = rhog
+    backstress = 1.0
+    sink = 1.0
   []
 []
 
@@ -46,13 +56,11 @@
 
 [Executioner]
   type = Transient
-  end_time = 1.3
-  dt = 0.00000005
+  end_time = 1.0
+  dt = 0.005
   solve_type = NEWTON
-#  petsc_options_iname = '-pc_type -pc_hypre_type'
-#  petsc_options_value = 'hypre boomeramg'
-  petsc_options_iname = '-pc_type -pc_factor_mat_solver_package'
-  petsc_options_value = ' lu       mumps'
+  petsc_options_iname = '-pc_type -pc_hypre_type'
+  petsc_options_value = 'hypre boomeramg'
 []
 
 [VectorPostprocessors]
@@ -75,14 +83,10 @@
 []
 
 [Outputs]
-  [./exodus]
-    type = Exodus
-    start_step = 200000
-    interval = 200000
-  [../]
+  exodus = true
   [csv]
     type = CSV
-    file_base = rho_distr_c01_out
+    file_base = rho_distr_c1_sink
     execute_on = final
   []
 []
